@@ -312,7 +312,7 @@ test_candidate_list = [{'Name': ',', 'Profile Link': 'https://employer.schoolspr
 if __name__ == "__main__":
     driver = login_with_selenium()
     if driver:
-        scrape_email_phone(driver, just_two_candidates)
+        scrape_email_phone(driver, candidate_links.pg1to42)
         # candidates_data = scrape_candidates(driver)
         # save_to_txt(candidates_data)
     else:
