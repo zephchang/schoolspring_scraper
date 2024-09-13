@@ -1,304 +1,146 @@
-<title>SchoolSpring : Candidate Search</title>
-
-<script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-6R4MST66GR&amp;cx=c&amp;_slc=1"></script><script type="text/javascript" async="" src="https://ssl.luckyorange.com/w.js"></script><script async="" src="https://sb.scorecardresearch.com/beacon.js"></script><script async="" src="https://web-sdk-us2.aptrinsic.com/api/aptrinsic.js?a=AP-NFCRPXGUKW4R-2"></script><script src="/js/rowselect.js" language="javascript"></script>
-<script language="javascript">
-function validate() {
-        var myForm = document.search;
-        var jobCatChecked = false;
-        for (i=0; i<myForm.jobCats.length; i++) {
-                if (myForm.jobCats[i].checked==true) {
-                        jobCatChecked = true;
-                }
-        }
-
-        if (jobCatChecked) {
-                return true;
-        } else {
-                alert('You must select at least one Job Category');
-                return false;
-        }
-
-}
-</script>
-
-<link rel="stylesheet" href="/css/employer.css" type="text/css">
-<meta http-equiv="imagetoolbar" content="no">
-<script language="javascript" src="/js/cookie.js"></script>
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-<script async="" src="//static.hotjar.com/c/hotjar-152497.js?sv=5"></script><link rel="stylesheet" type="text/css" href="https://web-sdk-us2.aptrinsic.com/style.css?a=AP-NFCRPXGUKW4R-2"><style id="apt-widget-outer-style" type="text/css">.apt-widget{height:0;width:0}.apt-widget iframe{border-width:0;position:static;visibility:initial;margin:initial;background:initial;border:initial}.apt-widget .apt-widget-window{position:absolute;height:100%;width:100%;box-shadow:0 2px 4px 0 rgba(0,0,0,.2);-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;top:0;left:0}.apt-widget .apt-widget-icon-frame{height:60px;width:60px;border-width:0;overflow:hidden;box-shadow:0 2px 4px 0 rgba(0,0,0,.2);border-radius:50%}.apt-widget .dragging-element{position:fixed;top:auto!important;z-index:999999999;width:auto}.apt-widget .dragging-handle{position:absolute;width:100%;height:100%;z-index:99}.apt-widget .apt-widget-dragging-handle{background-color:transparent;border:none}.apt-widget .apt-widget-container{position:fixed;-webkit-border-radius:8px;-moz-border-radius:8px;border-style:none;min-height:136px;min-width:200px;max-width:calc(100vw - 110px);z-index:999999999;background-color:transparent;right:80px;bottom:80px}.apt-widget .window-fade-enter{height:350px;bottom:90px;opacity:.01}.apt-widget .window-fade-enter.window-fade-enter-active{opacity:1;bottom:100px;-webkit-transition:all .3s ease-out;-moz-transition:all .3s ease-out;-ms-transition:all .3s ease-out;-o-transition:all .3s ease-out;transition:all .3s ease-out}.apt-widget .window-fade-leave{opacity:1}.apt-widget .window-fade-leave.window-fade-leave-active{opacity:.01;bottom:90px;height:350px;-webkit-transition:all .3s ease-out;-moz-transition:all .3s ease-out;-ms-transition:all .3s ease-out;-o-transition:all .3s ease-out;transition:all .3s ease-out}.apt-widget .icon-fix{position:relative;top:2px}.apt-widget .apt-recommendation-bubble-frame{width:270px;position:fixed;height:fit-content;right:85px;bottom:20px;border-width:0;overflow:hidden;z-index:999999999}.apt-widget .apt-widget-badge-alert{border-radius:50%;text-align:center;border-width:1px;border-style:solid;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.apt-widget .apt-widget-badge-alert.top-left{position:absolute;top:-3px;left:-3px}.apt-widget .apt-widget-badge-alert.top-right{position:absolute;top:-3px;right:-3px}.apt-widget .apt-widget-badge-alert.bottom-left{position:absolute;bottom:0;left:0}.apt-widget .apt-widget-badge-alert.bottom-right{position:absolute;bottom:0;right:0}</style><script async="" src="https://script.hotjar.com/modules.6e8cbd39caed17f0d1c0.js" charset="utf-8"></script></head>
-<body onload="hideAllCats()">
-
-<table border="0" width="100%" cellspacing="0" cellpadding="0" class="maintable">
-
-
-
-<script language="javascript" src="/js/employernav.js" type="text/javascript"></script>
-<tbody><tr>
-<td class="banner">
-        <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                <tbody><tr>
-
-                        <td align="left" nowrap=""><a href="/employer/index.cfm?&amp;ts=1726224467082"><img src="/i/employer/logo_schoolspring.jpg" title="" alt="SchoolSpring logo" width="187" height="79" border="0"></a></td>
-                        <td align="right" nowrap=""><a href="/employer/index.cfm?&amp;ts=1726224467082" onmouseover="buttonOn('home')" onmouseout="buttonOff('home')"><img name="home" src="/i/employer/nav-home-0.jpg" title="" alt="Home" width="130" height="79" border="0"></a><a href="/employer/jobs/joblist.cfm?&amp;ts=1726224467082" onmouseover="buttonOn('jobs')" onmouseout="buttonOff('jobs')"><img name="jobs" src="/i/employer/nav-jobs-0.jpg" title="" alt="Job Postings" width="130" height="79" border="0"></a><a href="/employer/pool/candsearch.cfm?&amp;ts=1726224467082"><img name="applicants" src="/i/employer/nav-applicants-2.jpg" title="" alt="Candidate Pool" width="130" height="79" border="0"></a><a href="/employer/system/index.cfm?&amp;ts=1726224467082" onmouseover="buttonOn('system')" onmouseout="buttonOff('system')"><img name="system" src="/i/employer/nav-system-0.jpg" title="" alt="System Management" width="130" height="79" border="0"></a></td>
-
-                </tr>
-        </tbody></table>
-</td>
-</tr>
-
-<tr>
-<td class="utility">
-<table border="0" width="100%" cellspacing="0" cellpadding="0">
-        <tbody><tr>
-
-                <td align="left" nowrap="">Friday, September 13, 2024</td>
-                <td align="right" nowrap="">
-
-                                Hello, Zeph&nbsp;|&nbsp;
-
-                        <a href="/employer/myaccount.cfm">Account Settings</a>&nbsp;|&nbsp;
-                        <a href="/logout.cfm">Logout</a>
-                </td>
-
-        </tr>
-</tbody></table>
-</td>
-</tr>
-
-
-        <tr>
-                <td class="breadcrumbs">
-                        <b>You are here:</b>
-                        <a href="/employer/index.cfm">Home</a> &gt;
-                        Candidate Search
-                </td>
-        </tr>
-
-
-
-
-
-        <tr>
-                <td>
-                        <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                                <tbody><tr valign="top">
-                                        <td width="170" class="subnav_cell" style="padding-left:9px">
-
-<table border="0" cellspacing="1" cellpadding="4" width="100%" class="subnav_table">
-<tbody><tr class="subnav_header">
-        <td class="subnav_title">Candidate Pool</td>
-</tr>
-<tr valign="top">
-        <td>
-
-                        <img src="/i/employer/btn-pool_search-1.gif" title="" alt="Candidate Search" width="146" height="30" border="0"><br>
-
-                        <a href="/employer/pool/candsaved.cfm"><img src="/i/employer/btn-pool_saved.gif" title="" alt="Saved Candidates" width="146" height="30" border="0"></a><br>
-
+<td align="center">
+  <table
+    border="0"
+    width="500"
+    cellspacing="0"
+    cellpadding="6"
+    style="border: 1px solid #e6e6e6"
+  >
+    <tbody>
+      <tr class="column_headings">
+        <td colspan="2">Personal Introduction</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          I am Ainatul Mardia A. Abdulkarim, 34 years of age. I graduated my
+          bachelor's degree year 2011 and took a professional education
+          certificate last 2017 and currently studying Masters of Arts in
+          Education Major in Math.
         </td>
-</tr>
-</tbody></table>
+      </tr>
+    </tbody>
+  </table>
+  <br />
 
-                                                <p>
-                                                <table border="0" cellspacing="1" cellpadding="4" width="100%" class="subnav_table">
-                                                        <tbody><tr class="subnav_header">
-                                                                <td colspan="2" class="subnav_title">Quick Search</td>
-                                                        </tr>
+  <table
+    border="0"
+    width="500"
+    cellspacing="0"
+    cellpadding="6"
+    style="border: 1px solid #e6e6e6"
+  >
+    <tbody>
+      <tr class="column_headings">
+        <td colspan="2">Contact Information</td>
+      </tr>
+      <tr>
+        <td class="table_data"><b>Candidate ID</b></td>
+        <td class="table_data">10023547</td>
+      </tr>
 
-                                                        <form action="candsearch.cfm" method="post" name="quicksearch"></form>
-                                                        <input type="hidden" name="clearFilters">
-                                                        <input type="hidden" name="searchType" value="quick">
-                                                        <input type="hidden" name="j_id" value="none">
-                                                        <input type="hidden" name="start_month" value="1">
-                                                        <input type="hidden" name="start_year" value="1900">
-                                                        <input type="hidden" name="jobCats" value="">
-                                                        <input type="hidden" name="type" value="">
-                                                        <input type="hidden" name="grade" value="">
-                                                        <tr>
-                                                                <td><b>Name</b></td><td><input type="text" name="namesearch" value="" style="width:100%"></td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td colspan="2" align="center"><input type="submit" value="Search"></td>
-                                                        </tr>
+      <tr>
+        <td class="table_data"><b>Name</b></td>
+        <td class="table_data">Ainatul Mardia Abdulatiff Abdulkarim</td>
+      </tr>
+      <tr>
+        <td class="table_data"><b>Other/Birth Name(s)</b></td>
+        <td class="table_data">None</td>
+      </tr>
 
+      <tr>
+        <td class="table_data"><b>Current Status</b></td>
+        <td class="table_data">Actively seeking</td>
+      </tr>
 
-                                                </tbody></table>
+      <tr>
+        <td class="table_data" valign="top"><b>Current Address</b></td>
+        <td class="table_data">
+          Phase 2, Country Homes, Ayala, Zamboanga City, Philippines<br />
+          Tausug, Outside US and Canada 70000<br />
+          Philippines<br />
+        </td>
+      </tr>
 
-                                        </p></td>
-                                        <td class="content_cell" align="center">
-                                                <table border="0" width="100%" cellspacing="1" cellpadding="6" class="content_table">
-                                                        <tbody><tr>
-                                                                <td class="content_header">
-                                                                        <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                                                                                <tbody><tr>
-                                                                                      <td align="left" nowrap=""><span class="content_title">Candidate Search</span></td>
-                                                                                </tr>
-                                                                        </tbody></table>
-                                                                </td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td>
-                                                                                <table width="100%" align="center" cellspacing="0" cellpadding="6">
+      <tr>
+        <td class="table_data"><b>Permanent Address</b></td>
+        <td class="table_data">
+          Phase 2, Country Homes, Ayala, Zamboanga City, Philippines<br />
+          , Outside US and Canada <br />
+          None<br />
+        </td>
+      </tr>
 
-                                                                                      <form action="candsearch.cfm" method="post" name="basicsearch"></form>
-                                                                                      <input type="hidden" name="clearFilters" value="true">
-                                                                                      <input type="hidden" name="searchType" value="basic">
-                                                                                      <input type="hidden" name="namesearch">
-                                                                                      <input type="hidden" name="start_month" value="9">
-                                                                                      <input type="hidden" name="start_year" value="2024">
-                                                                                      <input type="hidden" name="jobCats" value="">
-                                                                                      <input type="hidden" name="type" value="">
-                                                                                      <input type="hidden" name="grade" value="">
-                                                                                      <tbody><tr class="column_headings">
-                                                                                      <td colspan="2">Basic Search</td>
-                                                                                      </tr>
+      <tr>
+        <td class="table_data"><b>Phone</b></td>
+        <td class="table_data">9976795776</td>
+      </tr>
 
-                                                                                      <tr>
-                                                                                      <td colspan="2">Select a job from the list below to search for matching candidates...</td>
-                                                                                      </tr>
-                                                                                      <tr>
-                                                                                      <td colspan="2" align="center">
-                                                                                      <table cellpadding="0" cellspacing="0" border="0">
-                                                                                      <tbody><tr>
-                                                                                      <td>
-                                                                                      <select name="j_id">
-                                                                                      <option value="none">Select a job posting...</option>
+      <tr>
+        <td class="table_data"><b>Alternate Phone</b></td>
+        <td class="table_data">9606696718</td>
+      </tr>
 
-                                                                                      <option value="4795118">[#4795118] Center Director - Math Center ($60,000 - $80,000)</option>
+      <tr>
+        <td class="table_data"><b>Email</b></td>
+        <td class="table_data">
+          <a href="mailto:ama.abdulkarim08@gmail.com"
+            >ama.abdulkarim08@gmail.com</a
+          >
+        </td>
+      </tr>
+      <tr>
+        <td><b>Web Site</b></td>
+        <td>None provided</td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <table
+    border="0"
+    width="500"
+    cellspacing="0"
+    cellpadding="6"
+    style="border: 1px solid #e6e6e6"
+  >
+    <tbody>
+      <tr class="column_headings">
+        <td colspan="2">Career Information</td>
+      </tr>
+      <tr>
+        <td class="table_data"><b>Highest Degree</b></td>
+        <td class="table_data">Bachelor</td>
+      </tr>
+      <tr>
+        <td class="table_data"><b>Credits Beyond Degree</b></td>
+        <td class="table_data">30</td>
+      </tr>
 
-                                                                                      </select> <input type="submit" value="Find Candidates!" name="basicButton">
-                                                                                      </td>
-                                                                                      </tr>
-                                                                                      <tr>
-                                                                                      <td><table><tbody><tr><td><input type="checkbox" name="certOption" value="cert"></td><td>Show only certified candidates</td></tr></tbody></table></td>
-                                                                                      </tr>
+      <tr>
+        <td class="table_data"><b>Date Available To Start</b></td>
+        <td class="table_data">Not provided</td>
+      </tr>
 
-                                                                                      </tbody></table>
-                                                                                      <br></td>
-                                                                                      </tr>
+      <tr>
+        <td>
+          <b
+            >Eligible&nbsp;to&nbsp;work&nbsp;in&nbsp;US&nbsp;without&nbsp;sponsorship?</b
+          >
+        </td>
+        <td>Yes</td>
+      </tr>
+    </tbody>
+  </table>
+  <script type="text/javascript">
+    function toggleContent(content_id, link_id) {
+      if (document.getElementById(content_id).style.display != 'inline') {
+        document.getElementById(content_id).style.display = 'inline';
+        document.getElementById(link_id).innerHTML = 'Hide';
+      } else {
+        document.getElementById(content_id).style.display = 'none';
+        document.getElementById(link_id).innerHTML = 'Show';
+      }
+    }
+  </script>
 
-
-
-                                                                                </tbody></table>
-
-                                                                </td>
-                                                        </tr>
-                                                </tbody></table>
-                                        </td>
-                                </tr>
-                        </tbody></table>
-                </td>
-        </tr>
-
-</tbody></table>
-
-
-<div align="center" class="footer-copyright"><b>Can we help?</b><div class="contact-details"><a href="https://help.powerschool.com/t5/Unified-Talent-TalentEd-Contact/ct-p/Unified-Talent-TalentEd-Applicant-Chat" target="_blank">Submit a Support Case here</a>
-<br>Phone Number: 1-855-955-0946 (toll-free, US only)</div>
-<div class="smalltext"><br>Copyright © 2024, PowerSchool Group LLC and/or its affiliate(s).<br> All trademarks are either owned or licensed by PowerSchool Group LLC or its affiliates.</div>
-</div>
-
-
-<script type="text/javascript">$.ajax({url:'/employer/keepalive.html'})</script>
-<!-- Gainsight PX Tag-->
-<script type="text/javascript">
-
-                var employerID = 105632;
-                var userID = 370881;
-                var site_id = 1;
-                var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-                var employertypeName = "SS Basic";
-                var employerName = "Mathnasium";
-                var stateName = "Massachusetts";
-                var hashuserID = "C950359B1365DF82B260640B9765D50C687D16EE869A96E8106FFE20C19FC7819F1D82815CF0ED81A697F525180119DAD14BC3865BDADA9B5B943946D226C5A0";
-                var userType = "System Admin";
-                var gainsightKey = "AP-NFCRPXGUKW4R-2";
-
-                (function(n,t,a,e,co){var i="aptrinsic";n[i]=n[i]||function(){
-                      (n[i].q=n[i].q||[]).push(arguments)},n[i].p=e;n[i].c=co;
-                    var r=t.createElement("script");r.async=!0,r.src=a+"?a="+e;
-                    var c=t.getElementsByTagName("script")[0];c.parentNode.insertBefore(r,c)
-                  })(window,document,"https://web-sdk-us2.aptrinsic.com/api/aptrinsic.js",gainsightKey);
-
-                  aptrinsic('identify',
-                 {
-                   "accountId" : employerID,
-                   'id': site_id + '-' + hashuserID,
-                   "role" : userType
-                 },
-                 {
-                   'id': employerID,
-                   'name': employerName,
-                   'timeZone':timeZone,
-                   'plan': employertypeName,
-                   'industry': 'Old SchoolSpring Job Board',
-                   'stateName': stateName
-                 });
-
-</script>
-<!-- Gainsight PX Tag-->
-
-
-<!-- Google Analytics -->
-
-
-<script async="" src="//www.google-analytics.com/analytics.js"></script>
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-137045-2', 'auto');
-ga('require', 'displayfeatures');
-
-ga('set', 'userId', '10029473');
-
-ga('set', 'dimension4', 'YES'); 
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-<!-- Begin comScore Tag -->
-<script>
-var _comscore = _comscore || [];
-_comscore.push({ c1: "2", c2: "10002435" });
-(function() {
-var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
-s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
-el.parentNode.insertBefore(s, el);
-})();
-</script>
-<noscript>
-<img src="https://sb.scorecardresearch.com/p?c1=2&c2=10002435&cv=2.0&cj=1" />
-</noscript>
-<!-- End comScore Tag -->
-
-
-<script type="text/javascript">
-window.__wtw_lucky_site_id = 32668;
-(function() {
-var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
-wa.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://cdn') + '.luckyorange.com/w.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
-})();
-</script>
-
-<!-- Hotjar Tracking Code for http://www.schoolspring.com -->
-<script>
-(function(h,o,t,j,a,r){
-h.hj=h.hj||function()
-{(h.hj.q=h.hj.q||[]).push(arguments)}
-;
-h._hjSettings=
-{hjid:152497,hjsv:5}
-;
-a=o.getElementsByTagName('head')[0];
-r=o.createElement('script');r.async=1;
-r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-a.appendChild(r);
-})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
-
-<!-- Served by: 10.205.6.109 --> 
-
-
-<div class="apt-guide-overlay-top" style="display: none; visibility: hidden;"></div><div class="apt-guide-overlay-bottom" style="display: none; visibility: hidden;"></div><div class="apt-guide-overlay-left" style="display: none; visibility: hidden;"></div><div class="apt-guide-overlay-right" style="display: none; visibility: hidden;"></div><iframe id="lo-cs-frame" src="about:blank" aria-hidden="true" title="Lucky Orange" style="display: none !important;"></iframe><div id="apt-widget" class="apt-widget-top-container" style="display: none;"><div class="apt-widget"><span id="apt-widget-animation-container" class="apt-widget-animation-container"></span><div id="apt-widget-controller" class="apt-widget-dragging-element dragging-element" style="inset: auto auto 80px 40px;"><div class="apt-widget-controller-content" style="display: flex;"><button aria-label="Knowledge Center Bot, also known as KC Bot is an onboarding assistant that allows you to see the list of onboarding items in one place for quick and easy reference. This improves your in-app experience." class="apt-widget-dragging-handle dragging-handle"></button><iframe role="img" aria-hidden="true" tabindex="-1" name="widget-icon" class="apt-widget-icon-frame" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" title="Knowledge Center Bot, also known as KC Bot is an onboarding assistant that allows you to see the list of onboarding items in one place for quick and easy reference. This improves your in-app experience." style="height: 58px; width: 58px;"></iframe></div></div><div></div></div></div><iframe class="apt-widget-frame" data-sdkconfig="{&quot;apiKey&quot;:&quot;AP-NFCRPXGUKW4R-2&quot;,&quot;aptId&quot;:&quot;83dff40b-bc95-48fe-9d82-d843f17aa257&quot;,&quot;initialConfig&quot;:{&quot;kcId&quot;:&quot;37cc431f-4b7e-4494-a1d2-deca30d06200&quot;,&quot;subscriptionId&quot;:&quot;66ae3c2b-88da-4e84-bc65-c79e2cfa3052&quot;,&quot;propertyGroupId&quot;:&quot;NFCRPXGUKW4R&quot;,&quot;enabled&quot;:true,&quot;urlPattern&quot;:&quot;*&quot;,&quot;injectionType&quot;:&quot;FLOATING_BTN&quot;,&quot;progressBarSettings&quot;:{&quot;enabled&quot;:false,&quot;countArticle&quot;:false,&quot;barBackgroundColor&quot;:&quot;#C3C3C3&quot;,&quot;barFillColor&quot;:&quot;#0F87EC&quot;,&quot;barHeight&quot;:8,&quot;barWidth&quot;:87,&quot;categoriesSectionTitle&quot;:&quot;Additional Modules&quot;,&quot;textMessage&quot;:&quot;Getting Started&quot;,&quot;textMessageColor&quot;:&quot;#515151&quot;,&quot;textMessageFontSize&quot;:14,&quot;progressValueType&quot;:&quot;COUNTER&quot;},&quot;badgeSettings&quot;:{&quot;enabled&quot;:false,&quot;backgroundColor&quot;:&quot;#1c6aef&quot;,&quot;textColor&quot;:&quot;#FFFFFF&quot;,&quot;borderColor&quot;:&quot;#1c6aef&quot;,&quot;fontSize&quot;:12,&quot;position&quot;:&quot;TOP_LEFT&quot;},&quot;tabsSettings&quot;:{&quot;id&quot;:null,&quot;hideSingleTab&quot;:true,&quot;onboardingIcon&quot;:&quot;BOT_20&quot;,&quot;feedbackIcon&quot;:&quot;BOT_21&quot;,&quot;knowledgeBaseIcon&quot;:&quot;BOT_13&quot;,&quot;onboardingIconColor&quot;:&quot;#000000&quot;,&quot;feedbackIconColor&quot;:&quot;#000000&quot;,&quot;knowledgeBaseIconColor&quot;:&quot;#000000&quot;,&quot;onboardingTabIndex&quot;:1,&quot;feedbackTabIndex&quot;:2,&quot;knowledgeBaseTabIndex&quot;:3,&quot;defaultTabIndex&quot;:1},&quot;windowSettings&quot;:{&quot;contentBackgroundColor&quot;:&quot;#ffffff&quot;,&quot;headerColor&quot;:&quot;#0050a2&quot;,&quot;textColor&quot;:&quot;#333333&quot;,&quot;hoverTextColor&quot;:&quot;#404040&quot;,&quot;selectedTabHighlightColor&quot;:&quot;#0050a2&quot;,&quot;unselectedTabColor&quot;:&quot;#f9f8f7&quot;,&quot;headerText&quot;:&quot;Knowledge Center&quot;,&quot;headerTextColor&quot;:&quot;#ffffff&quot;,&quot;headerIcon&quot;:&quot;&quot;,&quot;headerFont&quot;:&quot;&quot;,&quot;textFont&quot;:&quot;&quot;,&quot;tooltipTextColor&quot;:&quot;#07f163&quot;,&quot;tooltipBackgroundColor&quot;:&quot;#404040&quot;,&quot;badgeColor&quot;:&quot;#ff7f00&quot;,&quot;badgeTextColor&quot;:&quot;#ffffff&quot;,&quot;newEngagementIcon&quot;:&quot;&quot;,&quot;completedEngagementIcon&quot;:&quot;success-1&quot;,&quot;inProgressEngagementIcon&quot;:&quot;success-3&quot;,&quot;categoryHoverStripeColor&quot;:&quot;#0F87EC&quot;,&quot;categoryHoverBackgroundColor&quot;:&quot;#000000&quot;,&quot;categoryHoverBackgroundFill&quot;:10,&quot;categoryHoverArrowColor&quot;:&quot;#0F87EC&quot;,&quot;submitButtonColor&quot;:&quot;#0F87EC&quot;,&quot;searchResultsTitleColor&quot;:&quot;#000000&quot;,&quot;searchResultsSummeryColor&quot;:&quot;#000000&quot;,&quot;botPosition&quot;:&quot;LEFT&quot;,&quot;botPositionOffsetBottom&quot;:80,&quot;widgetHeight&quot;:500,&quot;widgetWidth&quot;:400,&quot;feedbackHeaderText&quot;:&quot;Your Feedback&quot;,&quot;docsSearchHeaderText&quot;:&quot;Community Knowledge Base&quot;,&quot;showSpeechBobble&quot;:false,&quot;showEngagementsType&quot;:true,&quot;showCategoryIcon&quot;:true,&quot;showEngagementsCompletedIndicator&quot;:true,&quot;showEngagementsInProgressIndicator&quot;:true,&quot;showEngagementsNotViewedIndicator&quot;:true,&quot;engagementsTypeColor&quot;:&quot;#000000&quot;,&quot;engagementsNotViewedIndicatorColor&quot;:&quot;#1c6aef&quot;,&quot;engagementsInProgressIndicatorColor&quot;:&quot;#a8b1b2&quot;,&quot;engagementsCompletedIndicatorColor&quot;:&quot;#1c6aef&quot;,&quot;categoryColor&quot;:&quot;#000000&quot;,&quot;embedKCSettings&quot;:{&quot;horizontalAlignment&quot;:&quot;LEFT&quot;,&quot;verticalAlignment&quot;:&quot;TOP&quot;,&quot;positionSettings&quot;:{&quot;positionVertical&quot;:&quot;TOP&quot;,&quot;positionHorizontal&quot;:&quot;RIGHT&quot;,&quot;positionTopDelta&quot;:0,&quot;positionLeftDelta&quot;:0},&quot;elementSelector&quot;:{&quot;cssSelector&quot;:null,&quot;type&quot;:null,&quot;unique&quot;:false,&quot;matchCssSelector&quot;:true,&quot;matchTextRule&quot;:null,&quot;textRule&quot;:null},&quot;calculatedPosition&quot;:{}},&quot;showReadMore&quot;:true,&quot;botPositionHorizontalOffset&quot;:40,&quot;allowDismiss&quot;:false,&quot;dismissButtonColor&quot;:&quot;#0F87EC&quot;,&quot;enableOnboardingSearch&quot;:true,&quot;knowledgeBaseSearchText&quot;:&quot;Type something in the search box.&quot;,&quot;resizable&quot;:false,&quot;hideArticleSummary&quot;:false,&quot;linkIconColor&quot;:&quot;#7596B7&quot;,&quot;funcIconColor&quot;:&quot;#7596B7&quot;,&quot;zindex&quot;:null},&quot;floatingButtonSettings&quot;:{&quot;openStateColor&quot;:&quot;#0050a2&quot;,&quot;closedStateColor&quot;:&quot;#ffffff&quot;,&quot;iconCloseColor&quot;:&quot;#000000&quot;,&quot;openStateIcon&quot;:&quot;BOT_11&quot;,&quot;closedStateIcon&quot;:&quot;CLOSE_4&quot;,&quot;rightPadding&quot;:&quot;20px&quot;,&quot;bottomPadding&quot;:&quot;20px&quot;,&quot;iconOpenColor&quot;:&quot;#ffffff&quot;,&quot;iconSize&quot;:40,&quot;useImage&quot;:true,&quot;draggable&quot;:false,&quot;imageUrl&quot;:&quot;https://storage.googleapis.com/froala-upload-prod-us-2/66ae3c2b-88da-4e84-bc65-c79e2cfa3052/image/a1c7f526-bd72-4bbb-9818-37715dd86767.png&quot;},&quot;onBoardingSettings&quot;:{&quot;autoSuggestionType&quot;:&quot;ON_LOGIN&quot;,&quot;suggestionText&quot;:&quot;Welcome to SchoolSpring!\n\nI'm SpringBot! Here to assist you in using the new experience to find your next dream job.&quot;,&quot;completionText&quot;:&quot;That's it, your onboarding is done!&quot;,&quot;backgroundColor&quot;:&quot;#fefefe&quot;,&quot;textColor&quot;:&quot;#000000&quot;,&quot;textFont&quot;:&quot;&quot;,&quot;textFontSize&quot;:12},&quot;includePatterns&quot;:[&quot;*.schoolspring.com*&quot;],&quot;excludePatterns&quot;:[&quot;*.schoolspring.com/jobApplication*&quot;,&quot;employer.schoolspring.com*&quot;],&quot;enableFeedback&quot;:false,&quot;enableOnBoarding&quot;:true,&quot;articleSearchEnabled&quot;:true,&quot;articleProvider&quot;:&quot;ARTICLE_PROVIDER_UNDEFINED&quot;,&quot;articleProviderDomain&quot;:&quot;&quot;,&quot;articleProviderDown&quot;:false,&quot;environments&quot;:[1],&quot;name&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;,&quot;state&quot;:&quot;STARTED&quot;,&quot;contextualSearchSetting&quot;:&quot;&quot;,&quot;contextualSearchTerm&quot;:&quot;&quot;,&quot;defaultLanguage&quot;:&quot;en&quot;,&quot;configLanguages&quot;:[],&quot;configLocale&quot;:null,&quot;staticFields&quot;:{&quot;guideRedirectMessage&quot;:null,&quot;guideRedirectConfirmButton&quot;:null,&quot;guideRedirectCancelButton&quot;:null,&quot;feedbackDropdownIssue&quot;:null,&quot;feedbackDropdownFeatureRequest&quot;:null,&quot;feedbackDropdownGeneralFeedback&quot;:null,&quot;feedbackDropdownOther&quot;:null,&quot;feedbackSubjectPlaceholder&quot;:null,&quot;feedbackDescriptionPlaceholder&quot;:null,&quot;feedbackSubmitButtonLabel&quot;:null,&quot;feedbackThankYouMessage&quot;:null,&quot;feedbackLeaveAnotherMessage&quot;:null,&quot;knowledgeBaseBlankSearchMessage&quot;:null,&quot;knowledgeBaseNoResultMessage&quot;:null,&quot;knowledgeBaseInputPlaceholder&quot;:null,&quot;knowledgeBaseFailureMessage&quot;:null,&quot;searchShowMore&quot;:null,&quot;searchShowLess&quot;:null,&quot;searchNoResults&quot;:null,&quot;feedbackLabelsDropdownNoOptions&quot;:null,&quot;feedbackLabelsDropdownPlaceholder&quot;:null,&quot;multipleFeedbackLabelsText&quot;:null,&quot;singleFeedbackLabelText&quot;:null},&quot;kcFeedbackCategories&quot;:[{&quot;feedbackCategoryId&quot;:&quot;715cb4f6-cdc9-4861-8bd5-f009ac2ba573&quot;,&quot;name&quot;:&quot;Feature request&quot;,&quot;sequence&quot;:3,&quot;labels&quot;:[]},{&quot;feedbackCategoryId&quot;:&quot;5aefe7cf-ae8c-451a-993f-b5d66024f740&quot;,&quot;name&quot;:&quot;Other&quot;,&quot;sequence&quot;:1,&quot;labels&quot;:[]},{&quot;feedbackCategoryId&quot;:&quot;a537e4bc-b252-44c3-b0c0-0279c608cdf9&quot;,&quot;name&quot;:&quot;General feedback&quot;,&quot;sequence&quot;:2,&quot;labels&quot;:[]},{&quot;feedbackCategoryId&quot;:&quot;08435543-034e-4d0b-95ac-5a110e37e43b&quot;,&quot;name&quot;:&quot;Issue&quot;,&quot;sequence&quot;:4,&quot;labels&quot;:[]}],&quot;searchSettings&quot;:{&quot;enabled&quot;:true,&quot;searchText&quot;:&quot;Type something in the search box.&quot;,&quot;searchTextColor&quot;:&quot;#1c3b60&quot;,&quot;showMoreColor&quot;:&quot;#49627f&quot;,&quot;searchBar&quot;:{&quot;backgroundColor&quot;:&quot;#FFFFFF&quot;,&quot;textColor&quot;:&quot;#000000&quot;,&quot;borderColorEnabled&quot;:&quot;#49627f&quot;,&quot;borderColorHover&quot;:&quot;#1c3b60&quot;,&quot;borderColorSelected&quot;:&quot;#1c3b60&quot;,&quot;searchIconColor&quot;:&quot;#1c3b60&quot;,&quot;clearIconColor&quot;:&quot;#1c3b60&quot;,&quot;backIconColor&quot;:&quot;#1c3b60&quot;,&quot;placeholderText&quot;:&quot;Search...&quot;,&quot;placeholderColor&quot;:&quot;#49627f&quot;},&quot;tabs&quot;:{&quot;allTabText&quot;:&quot;All&quot;,&quot;engTabText&quot;:&quot;Engagements&quot;,&quot;articleTabText&quot;:&quot;Articles&quot;,&quot;communityTabText&quot;:&quot;Community&quot;,&quot;knowledgeBaseTabText&quot;:&quot;Knowledge Base&quot;,&quot;color&quot;:&quot;#3d566f&quot;,&quot;hoverColor&quot;:&quot;#1c3b60&quot;,&quot;selectedColor&quot;:&quot;#1c3b60&quot;,&quot;linkTabText&quot;:&quot;Links&quot;}},&quot;recommendationSettings&quot;:{&quot;enabled&quot;:true,&quot;backgroundColor&quot;:&quot;#f1f5f8&quot;,&quot;iconUrl&quot;:&quot;&quot;,&quot;title&quot;:&quot;Recommended content&quot;,&quot;subtitle&quot;:&quot;Kickstart your work with these specially curated content for you.&quot;,&quot;titleColor&quot;:&quot;#19232f&quot;,&quot;subtitleColor&quot;:&quot;#7596b7&quot;},&quot;feedbackSettings&quot;:{&quot;subject&quot;:&quot;Subject&quot;,&quot;description&quot;:&quot;Describe your issue and share your thoughts...&quot;,&quot;submitButton&quot;:{&quot;enabled&quot;:true,&quot;backgroundColor&quot;:&quot;#0369E9&quot;,&quot;backgroundFill&quot;:null,&quot;showBorder&quot;:false,&quot;borderColor&quot;:null,&quot;text&quot;:&quot;Submit&quot;,&quot;textColor&quot;:&quot;#FFFFFF&quot;,&quot;cornerRadius&quot;:4,&quot;hoverBackgroundColor&quot;:null,&quot;hoverBackgroundFill&quot;:null,&quot;hoverTextColor&quot;:null,&quot;hoverBorderColor&quot;:null,&quot;fontSettings&quot;:{&quot;fontFamily&quot;:null,&quot;fontSize&quot;:15,&quot;bold&quot;:false,&quot;itallic&quot;:false,&quot;underlined&quot;:false},&quot;buttonPaddingSettings&quot;:null,&quot;shouldOverrideGlobalSettings&quot;:false,&quot;borderWidth&quot;:1.25},&quot;ackText&quot;:&quot;Thank you for your feedback&quot;,&quot;backButtonText&quot;:&quot;Send another feedback&quot;},&quot;communitySettings&quot;:{&quot;enableCommunitySearch&quot;:false,&quot;selectedCommunityCategoryIds&quot;:&quot;&quot;,&quot;selectedCommunityProductAreaIds&quot;:&quot;&quot;,&quot;backgroundColor&quot;:&quot;&quot;,&quot;iconUrl&quot;:&quot;&quot;,&quot;textTitle&quot;:&quot;&quot;,&quot;textSubtitle&quot;:&quot;&quot;,&quot;titleColor&quot;:&quot;&quot;,&quot;subtitleColor&quot;:&quot;&quot;},&quot;invalidate&quot;:false,&quot;p&quot;:&quot;AP-NFCRPXGUKW4R-2&quot;,&quot;showIcon&quot;:true,&quot;isEmbedded&quot;:false,&quot;kcPositionType&quot;:&quot;injection&quot;,&quot;enableKcSecureArticle&quot;:false},&quot;enableKcSecureArticle&quot;:false}" style="opacity: 0; transform: scale(0); visibility: hidden; position: absolute; top: -9999px; left: -9999px;"></iframe><iframe id="_hjSafeContext_31829080" title="_hjSafeContext" tabindex="-1" aria-hidden="true" src="about:blank" style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe></body></html>
+  <br />
+</td>
