@@ -12,9 +12,39 @@ import candidate_links
 from supabase import create_client, Client
 
 # Initialize Supabase client
-supabase_url = "YOUR_SUPABASE_URL"
-supabase_key = "YOUR_SUPABASE_KEY"
+supabase_url = "https://qtmnxelrpjwtajqxqcko.supabase.co"
+supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0bW54ZWxycGp3dGFqcXhxY2tvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjYyNjQ5NjksImV4cCI6MjA0MTg0MDk2OX0.9OMSCP3oppN1-pV6z1yabOz5dHxbx9xcltUCJF2rDtY"
 supabase: Client = create_client(supabase_url, supabase_key)
+
+import traceback
+
+# Supabase test function
+def test_supabase_connection():
+    try:
+        # Insert a test record
+        test_data = {
+            'name': 'Test Candidate',
+            'email': 'test@example.com',
+            'profile_link': 'https://example.com/profile'
+        }
+        
+        response = supabase.table('candidates_data').insert(test_data).execute()
+        print("Insert response:", response)
+        
+        # Retrieve the inserted record
+        result = supabase.table('candidates_data').select("*").eq('name', 'Test Candidate').execute()
+        print("Retrieved data:", result)
+        
+        print("Supabase connection test completed successfully!")
+    except Exception as e:
+        print(f"Error during Supabase test: {str(e)}")
+        print("Traceback:")
+        traceback.print_exc()
+
+# Run the test function
+if __name__ == "__main__":
+    test_supabase_connection()
+
 
 def login_with_selenium():
     chrome_options = Options()
@@ -132,7 +162,7 @@ def scrape_email_phone(driver, candidates_data):
             print(f"Navigated to profile: {profile_link}")
             # driver.save_screenshot("candidate_profile.png")
 
-            time.sleep(2)
+            time.sleep(1.5)
             
             soup = BeautifulSoup(driver.page_source, 'html.parser')
 
@@ -160,25 +190,25 @@ def scrape_email_phone(driver, candidates_data):
                 print("Career table not found.")
 
             candidate_info = {
-                'Name': candidate['Name'],
-                'Profile Link': profile_link,
-                'Candidate ID': '',
-                'Full Name': '',
-                'Other/Birth Name(s)': '',
-                'Status': '',
-                'Current Address': '',
-                'Permanent Address': '',
-                'Phone': '',
-                'Email': '',
-                'Web Site': '',
-                'Highest Degree': '',
-                'Credits Beyond Degree': '',
-                'Date Available To Start': '',
-                'Eligible to work in US without sponsorship?': ''
+                'name': candidate['Name'],
+                'profile_link': profile_link,
+                'candidate_id': '',
+                'full_name': '',
+                'other_birth_names': '',
+                'status': '',
+                'current_address': '',
+                'permanent_address': '',
+                'phone': '',
+                'email': '',
+                'web_site': '',
+                'highest_degree': '',
+                'credits_beyond_degree': '',
+                'date_available_to_start': '',
+                'eligible_to_work_in_us_without_sponsorship': ''
             }
 
             if contact_table:
-                print('if contact_table block triggered')
+                print('Processing contact table')
                 rows = contact_table.find_all('tr')
                 for row in rows:
                     cells = row.find_all('td')
@@ -187,24 +217,23 @@ def scrape_email_phone(driver, candidates_data):
                         value = cells[1].text.strip()
 
                         if 'candidate id' in key:
-                            print('candidate ID contact table triggered')
-                            candidate_info['Candidate ID'] = value
+                            candidate_info['candidate_id'] = value
                         elif 'name' == key:
-                            candidate_info['Full Name'] = value
+                            candidate_info['full_name'] = value
                         elif 'other/birth name' in key:
-                            candidate_info['Other/Birth Name(s)'] = value
+                            candidate_info['other_birth_names'] = value
                         elif 'current status' in key:
-                            candidate_info['Status'] = value
+                            candidate_info['status'] = value
                         elif 'current address' in key:
-                            candidate_info['Current Address'] = value.replace('\n', ', ')
+                            candidate_info['current_address'] = value.replace('\n', ', ')
                         elif 'permanent address' in key:
-                            candidate_info['Permanent Address'] = value.replace('\n', ', ')
+                            candidate_info['permanent_address'] = value.replace('\n', ', ')
                         elif 'phone' == key:
-                            candidate_info['Phone'] = value
+                            candidate_info['phone'] = value
                         elif 'email' == key:
-                            candidate_info['Email'] = cells[1].find('a')['href'].replace('mailto:', '') if cells[1].find('a') else value
+                            candidate_info['email'] = cells[1].find('a')['href'].replace('mailto:', '') if cells[1].find('a') else value
                         elif 'web site' in key:
-                            candidate_info['Web Site'] = value
+                            candidate_info['web_site'] = value
 
                         print(f"Extracted: {key} -> {value}")  # Debug print
 
@@ -212,25 +241,25 @@ def scrape_email_phone(driver, candidates_data):
                 print(f"Warning: Contact information table not found for {candidate['Name']}")
 
             if career_table:
-                print('if career_table block triggered')
+                print('Processing career table')
                 rows = career_table.find_all('tr')
                 for row in rows:
                     cells = row.find_all('td')
                     if len(cells) == 2:
                         key = cells[0].text.strip().lower()
                         value = cells[1].text.strip()
-                        print('CAREER_TABLE KEY', key)
-                        print('CAREER_TABLE VALUE', value)
+                        print(f'Career table key: {key}')
+                        print(f'Career table value: {value}')
                         if 'highest degree' in key:
-                            candidate_info['Highest Degree'] = value
+                            candidate_info['highest_degree'] = value
                         elif 'credits beyond degree' in key:
-                            candidate_info['Credits Beyond Degree'] = value
+                            candidate_info['credits_beyond_degree'] = value
                         elif 'date available to start' in key:
-                            candidate_info['Date Available To Start'] = value
+                            candidate_info['date_available_to_start'] = value
                         elif 'eligible to work in us without sponsorship?' in key:
-                            candidate_info['Eligible to work in US without sponsorship?'] = value
+                            candidate_info['eligible_to_work_in_us_without_sponsorship'] = value
                         else:
-                            print("")
+                            print(f"Unmatched key: {key}")
 
                         print(f"Extracted: {key} -> {value}")  # Debug print
 
@@ -239,28 +268,30 @@ def scrape_email_phone(driver, candidates_data):
 
             updated_candidates.append(candidate_info)
             print(f"Processed candidate: {candidate['Name']}")
-            print("CANDIDATE_INFO", candidate_info)
+            print("Candidate info:", candidate_info)
 
         except Exception as e:
             print(f"Error processing candidate {candidate['Name']}: {str(e)}")
             # Add the candidate with minimal info to not lose the record
             updated_candidates.append({
-                'Name': candidate['Name'],
-                'Profile Link': candidate.get('Profile Link', ''),
-                'Error': str(e)
+                'name': candidate['Name'],
+                'profile_link': candidate.get('Profile Link', ''),
+                'error': str(e)
             })
 
         # Save to Supabase every 20 candidates or on the last candidate
         if index % 20 == 0 or index == len(candidates_data):
             try:
                 # Insert data into Supabase
-                data, count = supabase.table('candidates').insert(updated_candidates).execute()
-                print(f"Data saved to Supabase - {count} candidates processed")
+                response = supabase.table('candidates_data').insert(updated_candidates).execute()
+                print(f"Data saved to Supabase - Response: {response}")
                 
                 # Clear the updated_candidates list after successful insertion
                 updated_candidates = []
             except Exception as e:
                 print(f"Error saving data to Supabase: {str(e)}")
+                print("Traceback:")
+                traceback.print_exc()
                 # You might want to implement a retry mechanism or alternative storage method here
         
         print(f"Candidate {index} complete")
@@ -281,7 +312,7 @@ test_candidate_list = [{'Name': ',', 'Profile Link': 'https://employer.schoolspr
 if __name__ == "__main__":
     driver = login_with_selenium()
     if driver:
-        scrape_email_phone(driver, candidate_links.pg1to42)
+        scrape_email_phone(driver, just_two_candidates)
         # candidates_data = scrape_candidates(driver)
         # save_to_txt(candidates_data)
     else:
