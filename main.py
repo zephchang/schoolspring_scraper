@@ -120,9 +120,7 @@ def scrape_candidates(driver):
     
     return candidates_data
 
-
 def scrape_email_phone(driver, candidates_data):
-
     updated_candidates = []
     for candidate in candidates_data:
         profile_link = candidate['Profile Link']
@@ -130,35 +128,32 @@ def scrape_email_phone(driver, candidates_data):
         print(f"Navigated to profile: {profile_link}")
         driver.save_screenshot("candidate_profile.png")
 
-        # Add a small delay to ensure the page loads
         time.sleep(2)
         
         soup = BeautifulSoup(driver.page_source, 'html.parser')
 
-        # Find the table containing contact information
-        contact_table = soup.find('table', {'width': '500', 'cellspacing': '0', 'cellpadding': '6'})
-        # Find the table containing career information
-        career_table = soup.find('table', {'width': '500', 'cellspacing': '0', 'cellpadding': '6', 'style': 'border:1px solid #e6e6e6;'})
+        tables = soup.find_all('table', width='500')
 
-        # # Debug: Print the contact table HTML
-        # if contact_table:
-        #     print("Contact table found:")
-        #     print(contact_table.prettify())
-        # else:
-        #     print("Contact table not found with the specified attributes.")
-        #     print("Printing all tables with width='500':")
-        #     for table in soup.find_all('table', width='500'):
-        #         print(table.prettify())
-        #         print("---")
+        contact_table = None
+        career_table = None
+
+        if len(tables) >= 2:
+            contact_table = tables[0]
+            career_table = tables[1]
+
+        # Debug: Print the contact table HTML
+        if contact_table:
+            print("Contact table found:")
+            print(contact_table.prettify())
+        else:
+            print("Contact table not found.")
+
         if career_table:
             print("Career table found:")
             print(career_table.prettify())
         else:
-            print("Career table not found with the specified attributes.")
-            print("Printing all tables with width='500':")
-            for table in soup.find_all('table', width='500'):
-                print(table.prettify())
-                print("---")
+            print("Career table not found.")
+
         candidate_info = {
             'Name': candidate['Name'],
             'Profile Link': profile_link,
