@@ -1,0 +1,10 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "python main.py"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+
+[[buildpacks]]
+uri = "https://github.com/heroku/heroku-buildpack-google-chrome"
